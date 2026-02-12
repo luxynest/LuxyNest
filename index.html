@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elite Cleaning Services | Premium Home & Office Cleaning</title>
+  <meta name="description" content="Elite cleaning services with a luxury touch. Instant estimate, transparent add-ons, easy booking." />
+  <meta name="theme-color" content="#859987" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Animated orbs -->
+  <div class="orbs" aria-hidden="true">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="orb four"></div>
+  </div>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="panel-head">
+        <b>Menu</b>
+        <button class="btn btn-ghost" id="closeDrawer" type="button" aria-label="Close menu">✕</button>
+      </div>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#estimate">Estimation</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Elite Cleaning Services</h1>
+            <span>Luxury clean • Calm home • Premium care</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#estimate">Estimation</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn btn-ghost" href="#estimate">Instant Estimate</a>
+          <a class="btn btn-primary" href="#contact">Book Now</a>
+          <button class="hamburger" id="openDrawer" aria-label="Open menu" type="button">☰</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="hero-inner card aura">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="https://source.unsplash.com/9zfcMAo6m-o/1900x1200"
+            alt="Modern clean kitchen"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <div class="pill reveal">
+            <span class="dot" aria-hidden="true"></span>
+            Premium Cleaning • Trusted & Detail-Obsessed
+          </div>
+
+          <h2 class="reveal" style="transition-delay:.05s">
+            A spotless home — with a luxury touch.
+          </h2>
+
+          <p class="reveal" style="transition-delay:.10s">
+            We deliver elite residential and office cleaning with meticulous detail, calm professionalism,
+            and consistent results. Transparent add-ons, easy scheduling, and an instant estimate.
+          </p>
+
+          <div class="hero-actions reveal" style="transition-delay:.15s">
+            <a class="btn btn-primary" href="#estimate">Get Instant Estimate</a>
+            <a class="btn btn-ghost" href="#services">Explore Services</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat reveal" style="transition-delay:.20s">
+              <div class="icon" aria-hidden="true">✓</div>
+              <div>
+                <b>Premium Checklist</b>
+                <small>Every visit follows a standard of excellence</small>
+              </div>
+            </div>
+
+            <div class="stat reveal" style="transition-delay:.25s">
+              <div class="icon" aria-hidden="true">⏱</div>
+              <div>
+                <b>On-Time & Reliable</b>
+                <small>Clear arrival windows + updates</small>
+              </div>
+            </div>
+
+            <div class="stat reveal" style="transition-delay:.30s">
+              <div class="icon" aria-hidden="true">✦</div>
+              <div>
+                <b>Detail-First Finish</b>
+                <small>Edges, corners, glass & shine</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <p class="sr">Scroll down to view services, process, gallery, estimation, and contact.</p>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3 class="reveal">Services that match your lifestyle</h3>
+          <p class="reveal" style="transition-delay:.06s">
+            Choose your cleaning style — from maintenance to deep refresh. Every service is delivered with premium care.
+          </p>
+        </div>
+        <a class="btn btn-ghost reveal" href="#estimate" style="transition-delay:.10s">See Price Estimate</a>
+      </div>
+
+      <div class="grid services">
+        <article class="card svc lift reveal" style="transition-delay:.02s">
+          <div class="svc-body">
+            <span class="badge sage">Residential Standard</span>
+            <h4>Weekly / Bi-Weekly Maintenance</h4>
+            <p>Perfect for staying effortlessly spotless — kitchens, bathrooms, floors, dusting, and tidy finish.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> High-touch surfaces + shine</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Floors vacuumed & mopped</li>
+            </ul>
+          </div>
+          <div class="svc-media">
+            <img src="https://source.unsplash.com/OtXADkUh3-I/1200x900" alt="Clean living room filled with light" loading="lazy">
+          </div>
+        </article>
+
+        <article class="card svc lift reveal" style="transition-delay:.05s">
+          <div class="svc-body">
+            <span class="badge blush">Deep Clean</span>
+            <h4>Reset-Level Clean (Top to Bottom)</h4>
+            <p>For first-time clients, seasonal refresh, or anytime you want that “brand-new” feeling.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Baseboards, corners, detail dust</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Kitchen & bath deep attention</li>
+            </ul>
+          </div>
+          <div class="svc-media">
+            <img src="https://source.unsplash.com/SqOMDOQb3ws/1200x900" alt="Cleaner wiping a kitchen sink and counter" loading="lazy">
+          </div>
+        </article>
+
+        <article class="card svc lift reveal" style="transition-delay:.08s">
+          <div class="svc-body">
+            <span class="badge sand">Move-In / Move-Out</span>
+            <h4>Turnover Ready • Landlord Approved</h4>
+            <p>Empty-home detail clean: inside cabinets, appliances, bathrooms, floors, and final polish.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Cabinets, drawers, surfaces</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Clean, crisp, photo-ready</li>
+            </ul>
+          </div>
+          <div class="svc-media">
+            <img src="https://source.unsplash.com/nQlVMCHPysY/1200x900" alt="Bright empty room ready for move-in" loading="lazy">
+          </div>
+        </article>
+
+        <article class="card svc lift reveal" style="transition-delay:.11s">
+          <div class="svc-body">
+            <span class="badge blue">Bathrooms & Kitchens</span>
+            <h4>Signature Shine (The “Wow” Rooms)</h4>
+            <p>Precision cleaning for sinks, fixtures, counters, tile, mirrors, and stainless shine.</p>
+            <ul>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Glass & mirror clarity</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#0f1a14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span> Detail scrubbing + polish</li>
+            </ul>
+          </div>
+          <div class="svc-media">
+            <img src="https://source.unsplash.com/H8ESBTSZims/1200x900" alt="Bright clean bathroom with sink and tub" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3 class="reveal">A premium process — no guesswork</h3>
+          <p class="reveal" style="transition-delay:.06s">
+            Clear steps, consistent results. You always know what’s included and what to expect.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid process">
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-num">1</div>
+            <div>
+              <b>Choose your service</b>
+              <span>Maintenance, deep clean, or move-in/out — then select add-ons if needed.</span>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:.06s">
+            <div class="step-num">2</div>
+            <div>
+              <b>Get an instant estimate</b>
+              <span>Use the Estimation section below for a price range and clear line items.</span>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:.12s">
+            <div class="step-num">3</div>
+            <div>
+              <b>We clean with elite detail</b>
+              <span>High-touch areas, floors, bathrooms, kitchens, and a final polish.</span>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:.18s">
+            <div class="step-num">4</div>
+            <div>
+              <b>Walk-through and finish</b>
+              <span>We verify key zones and leave your home calm, fresh, and photo-ready.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-media">
+          <div class="media-stack">
+            <div class="media-tile reveal lift">
+              <img src="https://source.unsplash.com/oNUID4FVbuQ/1200x900" alt="Modern kitchen space" loading="lazy">
+              <div class="label">Kitchen Care</div>
+            </div>
+            <div class="media-tile reveal lift" style="transition-delay:.08s">
+              <img src="https://source.unsplash.com/xW2oK045Rwc/1200x900" alt="Bright double-sink bathroom" loading="lazy">
+              <div class="label">Bathroom Shine</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3 class="reveal">Industry visuals that match the vibe</h3>
+          <p class="reveal" style="transition-delay:.06s">
+            If photos fail to load, your site still stays elite (branded fallback).
+          </p>
+        </div>
+      </div>
+
+      <div class="masonry">
+        <figure class="shot reveal">
+          <img src="https://source.unsplash.com/__ZMnefoI3k/1200x1600" alt="Premium cleaning tools" loading="lazy">
+          <figcaption class="cap">Premium tools <em>•</em> spotless results</figcaption>
+        </figure>
+        <figure class="shot reveal" style="transition-delay:.06s">
+          <img src="https://source.unsplash.com/9zfcMAo6m-o/1200x900" alt="Kitchen polished and clean" loading="lazy">
+          <figcaption class="cap">Kitchens <em>•</em> fresh & polished</figcaption>
+        </figure>
+        <figure class="shot reveal" style="transition-delay:.12s">
+          <img src="https://source.unsplash.com/H8ESBTSZims/1200x1200" alt="Bathroom sink shine" loading="lazy">
+          <figcaption class="cap">Bathrooms <em>•</em> signature shine</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTIMATION (kept) -->
+  <section id="estimate">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h3 class="reveal">Estimation</h3>
+          <p class="reveal" style="transition-delay:.06s">
+            Get a quick price range based on your home and add-ons. Transparent line items.
+          </p>
+        </div>
+      </div>
+
+      <div class="estimate">
+        <div class="card aura form reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Instant Estimate Calculator
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="serviceType">Service type</label>
+              <select id="serviceType">
+                <option value="standard">Residential Standard</option>
+                <option value="deep">Deep Clean</option>
+                <option value="move">Move-In / Move-Out</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="homeType">Home type</label>
+              <select id="homeType">
+                <option value="apt">Apartment/Condo</option>
+                <option value="house">House</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="beds">Bedrooms</label>
+              <select id="beds">
+                <option>0</option><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="baths">Bathrooms</label>
+              <select id="baths">
+                <option>1</option><option selected>2</option><option>3</option><option>4</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="sqft">Approx. square feet</label>
+              <input id="sqft" type="number" inputmode="numeric" min="300" step="50" value="900" />
+            </div>
+
+            <div class="field">
+              <label for="frequency">Frequency</label>
+              <select id="frequency">
+                <option value="oneTime" selected>One-time</option>
+                <option value="weekly">Weekly</option>
+                <option value="biweekly">Bi-weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+
+            <div class="addons">
+              <label style="margin:0">Add-ons (optional)</label>
+              <div class="addons-row">
+                <label class="chip"><input type="checkbox" value="fridge" /> Inside fridge <small>+$35</small></label>
+                <label class="chip"><input type="checkbox" value="oven" /> Inside oven <small>+$35</small></label>
+                <label class="chip"><input type="checkbox" value="windows" /> Interior windows <small>+$45</small></label>
+                <label class="chip"><input type="checkbox" value="cabinets" /> Inside cabinets <small>+$55</small></label>
+                <label class="chip"><input type="checkbox" value="laundry" /> Laundry add-on <small>+$25</small></label>
+                <label class="chip"><input type="checkbox" value="pet" /> Pet hair focus <small>+$20</small></label>
+              </div>
+            </div>
+
+            <div class="field" style="grid-column:1/-1;">
+              <label for="notes">Notes (optional)</label>
+              <input id="notes" type="text" placeholder="Example: focus on bathrooms + kitchen, no bedrooms" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card summary reveal lift" style="transition-delay:.06s">
+          <div class="pricebox">
+            <div class="range">
+              <strong id="priceRange">$—</strong>
+              <span id="duration">• — hours</span>
+            </div>
+            <p class="note">
+              This is a fast estimate. Final price can vary with condition and layout — but we keep it transparent.
+            </p>
+
+            <div class="lineitems" id="lineItems"></div>
+
+            <div class="actions">
+              <a class="btn btn-primary" href="#contact">Request Booking</a>
+              <a class="btn btn-ghost" href="#services">What’s Included</a>
+            </div>
+          </div>
+
+          <p class="fineprint">
+            Estimate uses bedrooms/bathrooms/sqft + service type + frequency + add-ons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer">
+        <div class="footer-inner">
+          <div>
+            <h4>Ready for an elite clean?</h4>
+            <p>Add your phone, email, and service area here.</p>
+            <div class="copyright">© <span id="year"></span> Elite Cleaning Services</div>
+          </div>
+
+          <div class="contact">
+            <div class="row">
+              <div class="mini">📍 Service Area: New Jersey</div>
+              <div class="mini">🕒 Mon–Sat: 8am–6pm</div>
+            </div>
+            <div class="row">
+              <div class="mini">☎️ Phone: (Your Number)</div>
+              <div class="mini">✉️ Email: (Your Email)</div>
+            </div>
+            <div class="row">
+              <a class="btn btn-primary" href="#estimate">Recheck Estimate</a>
+              <a class="btn btn-ghost" href="#top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS file -->
+  <script src="app.js"></script>
+</body>
+</html>
