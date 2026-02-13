@@ -767,5 +767,26 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
     opacity: .85 !important;
   }
 }
+/* ===== Mobile: show full service images (no crop) ===== */
+@media (max-width: 920px){
+  .svc-media{
+    height: auto !important;
+    padding: 14px !important;          /* nice frame like your screenshot */
+    background: rgba(255,255,255,.55) !important;
+  }
+
+  .svc-media img{
+    width: 100% !important;
+    height: auto !important;           /* let the image decide its height */
+    object-fit: contain !important;    /* FULL image, no crop */
+    border-radius: 18px !important;
+    transform: none !important;        /* stop zoom/crop */
+  }
+
+  /* Turn off hover zoom (mobile doesn't need it) */
+  .svc:hover .svc-media img{
+    transform: none !important;
+  }
+}
 
 
