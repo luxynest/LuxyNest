@@ -537,4 +537,97 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
+/* =========================
+   MOBILE FRIENDLY PATCH
+   Paste at END of style.css
+   ========================= */
+
+/* 1) Better tap targets + prevent horizontal scroll */
+html, body { overflow-x: hidden; }
+a, button, input, select { -webkit-tap-highlight-color: transparent; }
+.btn, .nav-links a, .panel a, .chip { min-height: 44px; }
+
+/* 2) Sticky nav sizing + better spacing on small screens */
+@media (max-width: 920px){
+  .container{ width: min(1180px, calc(100% - 24px)); }
+  .nav{ padding: 10px 10px; gap: 10px; }
+  .brand h1{ font-size: 14px; }
+  .brand span{ font-size: 11px; }
+  .cta .btn{ padding: 10px 12px; }
+}
+
+/* 3) Hero becomes “phone-perfect” */
+@media (max-width: 920px){
+  .hero{ padding: 22px 0 6px; }
+  .hero-inner{
+    min-height: unset;
+    border-radius: 24px;
+  }
+  .hero-content{
+    padding: 18px;
+    max-width: 100%;
+  }
+  .hero h2{
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.05;
+  }
+  .hero p{ font-size: 14px; }
+  .hero-actions{ gap: 10px; }
+  .hero-actions .btn{ width: 100%; }
+  .hero-stats{ gap: 10px; }
+  .stat{ width: 100%; }
+  /* show more of the hero image on mobile */
+  .hero-media img{ object-position: center; transform: scale(1.02); }
+}
+
+/* 4) Services cards stack cleanly (image on top, content below) */
+@media (max-width: 920px){
+  .services{ gap: 14px; }
+  .svc{
+    grid-template-columns: 1fr;
+  }
+  .svc-media{
+    min-height: 220px;
+    border-radius: 22px;
+    margin: 0 14px 14px;
+  }
+  .svc-body{ padding: 16px; }
+}
+
+/* 5) Process + Gallery improvements for mobile */
+@media (max-width: 920px){
+  .steps{ gap: 10px; }
+  .step{ padding: 14px; }
+  .masonry{ columns: 1; }
+  .shot{ border-radius: 22px; }
+}
+
+/* 6) Estimation section: make form 1-column & comfortable */
+@media (max-width: 920px){
+  .estimate{ grid-template-columns: 1fr; }
+  .form-grid{ grid-template-columns: 1fr; }
+  select, input[type="number"], input[type="text"]{
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+  .addons-row{ grid-template-columns: 1fr; }
+  .chip{ padding: 12px 12px; }
+  .summary{ position: relative; }
+}
+
+/* 7) Drawer menu: bigger + safer on phones */
+@media (max-width: 920px){
+  .panel{
+    right: 12px;
+    left: 12px;
+    width: auto;
+    top: 12px;
+    border-radius: 24px;
+  }
+  .panel a{ padding: 16px; font-size: 15px; }
+}
+
+/* 8) Reduce motion option (accessibility) */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
 
