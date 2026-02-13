@@ -450,57 +450,91 @@ select:focus,input:focus{
 .panel a:hover{ background: rgba(205,232,211,.35); }
 
 
-/* =========================
-   MOBILE (clean + final)
-   ========================= */
-@media (max-width: 920px){
+/* =========================================================
+   RESPONSIVE LAYOUT (CLEAN) — Desktop / Tablet / Phone
+   Paste this at END of style.css
+   ========================================================= */
 
-  html, body { overflow-x: hidden; }
-  .container{ width: min(1180px, calc(100% - 24px)); }
+/* ---------- TABLET (<=1100px) ---------- */
+@media (max-width: 1100px){
 
-  /* Nav */
-  .nav-links{ display:none; }
-  .hamburger{ display:inline-grid; place-items:center; }
+  .container{ width: min(1180px, calc(100% - 28px)); }
 
+  /* NAV: give breathing room */
+  .nav{ padding: 10px 12px; gap: 12px; }
+  .nav-links{ gap: 10px; }
+  .nav-links a{ padding: 9px 10px; }
+
+  /* HERO: reduce height + padding */
+  .hero{ padding: 28px 0 10px; }
+  .hero-inner{ min-height: 560px; }
+  .hero-content{ padding: 28px; max-width: 680px; }
+
+  /* SERVICES: 2 columns still ok but tighter */
+  .svc{ grid-template-columns: 1fr; }
+  .svc-media{ min-height: 260px; }
+
+  /* PROCESS: stack */
+  .steps{ grid-column: span 12; }
+  .process-media{ grid-column: span 12; }
+
+  /* ESTIMATE: stack */
+  .estimate{ grid-template-columns: 1fr; }
+  .footer-inner{ grid-template-columns: 1fr; }
+}
+
+
+/* ---------- PHONE (<=720px) ---------- */
+@media (max-width: 720px){
+
+  :root{ --mobile-card: 560px; }
+
+  html, body{ overflow-x: hidden; }
+
+  /* NAV: hide links + show hamburger */
+  .nav-links{ display: none; }
+  .hamburger{ display: inline-grid; place-items: center; }
+
+  .nav-wrap{ padding: 10px 0; }
   .nav-wrap .container{
     width: 100%;
     padding-left: 12px;
     padding-right: 12px;
   }
   .nav{
+    width: 100%;
     max-width: var(--mobile-card);
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     padding: 10px 10px;
     gap: 10px;
   }
   .brand h1{ font-size: 14px; }
   .brand span{ font-size: 11px; }
-  .cta .btn{ padding: 10px 12px; }
 
-  /* Hero centered + no crop feeling */
-  .hero{ padding: 22px 0 6px; }
+  /* HERO: centered card look, readable spacing */
+  .hero{ padding: 18px 0 6px; }
   .hero-inner{
+    width: 100%;
+    max-width: var(--mobile-card);
+    margin: 0 auto;
     min-height: 520px;
     border-radius: 24px;
-    max-width: var(--mobile-card);
-    margin-left: auto;
-    margin-right: auto;
   }
   .hero-content{
     padding: 18px;
     max-width: 100%;
   }
   .hero h2{
-    font-size: clamp(28px, 8vw, 40px);
+    font-size: clamp(28px, 9vw, 40px);
     line-height: 1.05;
   }
   .hero p{ font-size: 14px; }
 
+  /* buttons full width */
   .hero-actions{ gap: 10px; }
   .hero-actions .btn{ width: 100%; }
 
-  /* Hero stats: always fit */
+  /* HERO STATS: clean 1 column, never overflow */
   .hero-stats{
     display: grid;
     grid-template-columns: 1fr;
@@ -517,7 +551,7 @@ select:focus,input:focus{
   }
   .stat > div{ min-width: 0; }
   .stat b, .stat small{
-    display:block;
+    display: block;
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -526,13 +560,21 @@ select:focus,input:focus{
   .stat small{ font-size: 12px; line-height: 1.35; opacity: .85; }
   .stat .icon{ width: 46px; height: 46px; border-radius: 16px; }
 
-  /* Services stack */
+  /* SECTIONS spacing */
+  section{ padding: 52px 0; }
+  .section-head{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* SERVICES: stack */
   .services .svc{ grid-column: span 12; }
   .svc{ grid-template-columns: 1fr; }
+  .svc-body{ padding: 16px; }
 
-  /* Service image: full visible (no crop) */
+  /* Service image: modern framed look, no crop (contain) */
   .svc-media{
-    min-height: unset;
     margin: 0 14px 14px;
     padding: 12px;
   }
@@ -544,26 +586,24 @@ select:focus,input:focus{
   }
   .svc:hover .svc-media img{ transform: none; }
 
-  /* Process */
-  .process .steps{ grid-column: span 12; }
-  .process .process-media{ grid-column: span 12; }
-
-  /* Gallery */
+  /* GALLERY: single column */
   .masonry{ columns: 1; }
 
-  /* Estimate */
+  /* ESTIMATE: one column */
   .estimate{ grid-template-columns: 1fr; }
   .form-grid{ grid-template-columns: 1fr; }
   .addons-row{ grid-template-columns: 1fr; }
+
+  /* prevents iOS zoom */
   select, input[type="number"], input[type="text"]{ font-size: 16px; }
 
-  /* Footer */
+  /* FOOTER */
   .footer-inner{ grid-template-columns: 1fr; }
 
-  /* Drawer */
+  /* DRAWER */
   .panel{
-    right: 12px;
     left: 12px;
+    right: 12px;
     width: auto;
     top: 12px;
     border-radius: 24px;
@@ -571,68 +611,8 @@ select:focus,input:focus{
   .panel a{ padding: 16px; font-size: 15px; }
 }
 
-/* Reduce motion */
+
+/* ---------- ACCESSIBILITY ---------- */
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
-/* === FINAL MOBILE HERO CONTENT CENTERING === */
-@media (max-width: 920px){
-
-  /* center the hero content block itself */
-  .hero-content{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  /* center pill */
-  .hero-content .pill{
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* center buttons but keep full width */
-  .hero-actions{
-    justify-content: center;
-  }
-
-  /* center stats container (cards stay full width) */
-  .hero-stats{
-    justify-items: center;
-  }
-}/* =========================================================
-   FINAL OVERRIDE (paste at VERY END of style.css)
-   Centers NAV + HERO card on mobile, without breaking layout
-   ========================================================= */
-@media (max-width: 920px){
-
-  /* 1) Center the NAV pill and HERO card (the “card” look) */
-  .nav,
-  .hero-inner{
-    max-width: var(--mobile-card) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 100% !important;
-  }
-
-  /* 2) Undo any “center everything” rules added earlier */
-  .hero-content{
-    text-align: left !important;   /* keeps your original style */
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .hero-content .pill{
-    margin-left: 0 !important;     /* pill stays aligned like before */
-    margin-right: 0 !important;
-  }
-
-  .hero-actions{
-    justify-content: flex-start !important;
-  }
-
-  .hero-stats{
-    justify-items: stretch !important; /* cards fill width nicely */
-  }
-}
-
