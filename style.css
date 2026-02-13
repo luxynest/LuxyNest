@@ -600,4 +600,39 @@ select:focus,input:focus{
   .hero-stats{
     justify-items: center;
   }
+}/* =========================================================
+   FINAL OVERRIDE (paste at VERY END of style.css)
+   Centers NAV + HERO card on mobile, without breaking layout
+   ========================================================= */
+@media (max-width: 920px){
+
+  /* 1) Center the NAV pill and HERO card (the “card” look) */
+  .nav,
+  .hero-inner{
+    max-width: var(--mobile-card) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+  }
+
+  /* 2) Undo any “center everything” rules added earlier */
+  .hero-content{
+    text-align: left !important;   /* keeps your original style */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .hero-content .pill{
+    margin-left: 0 !important;     /* pill stays aligned like before */
+    margin-right: 0 !important;
+  }
+
+  .hero-actions{
+    justify-content: flex-start !important;
+  }
+
+  .hero-stats{
+    justify-items: stretch !important; /* cards fill width nicely */
+  }
 }
+
