@@ -906,6 +906,13 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
     margin-right: auto !important;
   }
 }
+@media (max-width: 920px){
+  .hero-inner{
+    max-width: 560px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 
 
 
