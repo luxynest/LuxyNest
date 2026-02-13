@@ -25,6 +25,9 @@
 
   --ease: cubic-bezier(.2,.8,.2,1);
   --ease-out: cubic-bezier(.15,.9,.2,1);
+
+  /* mobile hero/nav max width (controls “centered” look) */
+  --mobile-card: 560px;
 }
 
 *{box-sizing:border-box}
@@ -143,13 +146,26 @@ img{max-width:100%; display:block}
   align-items:stretch;
 }
 .hero-media{ position:absolute; inset:0; z-index:0; }
-.hero-media img{ width:100%; height:100%; object-fit:cover; transform: scale(1.04); }
+.hero-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform: scale(1.04);
+}
 .hero-overlay{
   position:absolute; inset:0; z-index:1;
   background: radial-gradient(900px 500px at 20% 15%, rgba(255,255,255,.92), rgba(255,255,255,.55) 55%, rgba(255,255,255,.15) 100%),
               linear-gradient(90deg, rgba(255,255,255,.90), rgba(255,255,255,.55) 55%, rgba(255,255,255,.22));
 }
-.hero-content{ position:relative; z-index:2; padding:40px; display:grid; gap:18px; max-width: 720px; align-content:center; }
+.hero-content{
+  position:relative; z-index:2;
+  padding:40px;
+  display:grid;
+  gap:18px;
+  max-width: 720px;
+  align-content:center;
+}
 .hero h2{ margin:0; font-family:"Playfair Display", serif; font-size: clamp(34px, 4vw, 54px); line-height:1.02; color:#0e1a14; }
 .hero p{ margin:0; font-size:16px; line-height:1.65; color: rgba(23,37,29,.85); max-width:56ch; }
 
@@ -173,7 +189,9 @@ img{max-width:100%; display:block}
   background: rgba(255,255,255,.66);
   border:1px solid var(--stroke);
   box-shadow: 0 10px 24px rgba(15,26,20,.06);
-  display:flex; gap:10px; align-items:center;
+  display:flex;
+  gap:10px;
+  align-items:center;
   min-width:180px;
 }
 .icon{
@@ -217,7 +235,7 @@ section{ padding:70px 0; }
 
 .svc-media{ position:relative; }
 
-/* PREMIUM IMAGE FRAMES + fallback background */
+/* Premium image frames */
 .hero-media,
 .svc-media,
 .media-tile,
@@ -231,7 +249,6 @@ section{ padding:70px 0; }
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
-
 .hero-media img,
 .svc-media img,
 .media-tile img,
@@ -432,488 +449,129 @@ select:focus,input:focus{
 .panel a{ display:block; padding:14px; font-weight:900; border-bottom:1px solid rgba(22,35,28,.08); }
 .panel a:hover{ background: rgba(205,232,211,.35); }
 
-/* Mobile */
+
+/* =========================
+   MOBILE (clean + final)
+   ========================= */
 @media (max-width: 920px){
+
+  html, body { overflow-x: hidden; }
+  .container{ width: min(1180px, calc(100% - 24px)); }
+
+  /* Nav */
   .nav-links{ display:none; }
   .hamburger{ display:inline-grid; place-items:center; }
-  .services .svc{ grid-column: span 12; }
-  .process .steps{ grid-column: span 12; }
-  .process .process-media{ grid-column: span 12; }
-  .estimate{ grid-template-columns: 1fr; }
-  .footer-inner{ grid-template-columns: 1fr; }
-  .form-grid{ grid-template-columns: 1fr; }
-  .addons-row{ grid-template-columns: 1fr; }
-}
-/* =========================
-   MOBILE FRIENDLY PATCH
-   Paste at END of style.css
-   ========================= */
 
-/* 1) Better tap targets + prevent horizontal scroll */
-html, body { overflow-x: hidden; }
-a, button, input, select { -webkit-tap-highlight-color: transparent; }
-.btn, .nav-links a, .panel a, .chip { min-height: 44px; }
-
-/* 2) Sticky nav sizing + better spacing on small screens */
-@media (max-width: 920px){
-  .container{ width: min(1180px, calc(100% - 24px)); }
-  .nav{ padding: 10px 10px; gap: 10px; }
-  .brand h1{ font-size: 14px; }
-  .brand span{ font-size: 11px; }
-  .cta .btn{ padding: 10px 12px; }
-}
-
-/* 3) Hero becomes “phone-perfect” */
-@media (max-width: 920px){
-  .hero{ padding: 22px 0 6px; }
-  .hero-inner{
-    min-height: unset;
-    border-radius: 24px;
+  .nav-wrap .container{
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
-  .hero-content{
-    padding: 18px;
-    max-width: 100%;
-  }
-  .hero h2{
-    font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.05;
-  }
-  .hero p{ font-size: 14px; }
-  .hero-actions{ gap: 10px; }
-  .hero-actions .btn{ width: 100%; }
-  .hero-stats{ gap: 10px; }
-  .stat{ width: 100%; }
-  /* show more of the hero image on mobile */
-  .hero-media img{ object-position: center; transform: scale(1.02); }
-}
-
-/* 4) Services cards stack cleanly (image on top, content below) */
-@media (max-width: 920px){
-  .services{ gap: 14px; }
-  .svc{
-    grid-template-columns: 1fr;
-  }
-  .svc-media{
-    min-height: 220px;
-    border-radius: 22px;
-    margin: 0 14px 14px;
-  }
-  .svc-body{ padding: 16px; }
-}
-
-/* 5) Process + Gallery improvements for mobile */
-@media (max-width: 920px){
-  .steps{ gap: 10px; }
-  .step{ padding: 14px; }
-  .masonry{ columns: 1; }
-  .shot{ border-radius: 22px; }
-}
-
-/* 6) Estimation section: make form 1-column & comfortable */
-@media (max-width: 920px){
-  .estimate{ grid-template-columns: 1fr; }
-  .form-grid{ grid-template-columns: 1fr; }
-  select, input[type="number"], input[type="text"]{
-    font-size: 16px; /* prevents iOS zoom on focus */
-  }
-  .addons-row{ grid-template-columns: 1fr; }
-  .chip{ padding: 12px 12px; }
-  .summary{ position: relative; }
-}
-
-/* 7) Drawer menu: bigger + safer on phones */
-@media (max-width: 920px){
-  .panel{
-    right: 12px;
-    left: 12px;
-    width: auto;
-    top: 12px;
-    border-radius: 24px;
-  }
-  .panel a{ padding: 16px; font-size: 15px; }
-}
-
-/* 8) Reduce motion option (accessibility) */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
-}
-/* =========================
-   MOBILE FRIENDLY PATCH
-   Paste at END of style.css
-   ========================= */
-
-/* 1) Better tap targets + prevent horizontal scroll */
-html, body { overflow-x: hidden; }
-a, button, input, select { -webkit-tap-highlight-color: transparent; }
-.btn, .nav-links a, .panel a, .chip { min-height: 44px; }
-
-/* 2) Sticky nav sizing + better spacing on small screens */
-@media (max-width: 920px){
-  .container{ width: min(1180px, calc(100% - 24px)); }
-  .nav{ padding: 10px 10px; gap: 10px; }
-  .brand h1{ font-size: 14px; }
-  .brand span{ font-size: 11px; }
-  .cta .btn{ padding: 10px 12px; }
-}
-
-/* 3) Hero becomes “phone-perfect” */
-@media (max-width: 920px){
-  .hero{ padding: 22px 0 6px; }
-  .hero-inner{
-    min-height: unset;
-    border-radius: 24px;
-  }
-  .hero-content{
-    padding: 18px;
-    max-width: 100%;
-  }
-  .hero h2{
-    font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.05;
-  }
-  .hero p{ font-size: 14px; }
-  .hero-actions{ gap: 10px; }
-  .hero-actions .btn{ width: 100%; }
-  .hero-stats{ gap: 10px; }
-  .stat{ width: 100%; }
-  /* show more of the hero image on mobile */
-  .hero-media img{ object-position: center; transform: scale(1.02); }
-}
-
-/* 4) Services cards stack cleanly (image on top, content below) */
-@media (max-width: 920px){
-  .services{ gap: 14px; }
-  .svc{
-    grid-template-columns: 1fr;
-  }
-  .svc-media{
-    min-height: 220px;
-    border-radius: 22px;
-    margin: 0 14px 14px;
-  }
-  .svc-body{ padding: 16px; }
-}
-
-/* 5) Process + Gallery improvements for mobile */
-@media (max-width: 920px){
-  .steps{ gap: 10px; }
-  .step{ padding: 14px; }
-  .masonry{ columns: 1; }
-  .shot{ border-radius: 22px; }
-}
-
-/* 6) Estimation section: make form 1-column & comfortable */
-@media (max-width: 920px){
-  .estimate{ grid-template-columns: 1fr; }
-  .form-grid{ grid-template-columns: 1fr; }
-  select, input[type="number"], input[type="text"]{
-    font-size: 16px; /* prevents iOS zoom on focus */
-  }
-  .addons-row{ grid-template-columns: 1fr; }
-  .chip{ padding: 12px 12px; }
-  .summary{ position: relative; }
-}
-
-/* 7) Drawer menu: bigger + safer on phones */
-@media (max-width: 920px){
-  .panel{
-    right: 12px;
-    left: 12px;
-    width: auto;
-    top: 12px;
-    border-radius: 24px;
-  }
-  .panel a{ padding: 16px; font-size: 15px; }
-}
-
-/* 8) Reduce motion option (accessibility) */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
-}
-/* ===== Fix HERO stat cards text on mobile ===== */
-@media (max-width: 920px){
-  .stat{
-    align-items: flex-start;   /* text aligns nicely */
+  .nav{
+    max-width: var(--mobile-card);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px;
     gap: 10px;
-    padding: 12px 12px;
   }
+  .brand h1{ font-size: 14px; }
+  .brand span{ font-size: 11px; }
+  .cta .btn{ padding: 10px 12px; }
 
-  /* IMPORTANT: allow the text container to shrink/wrap */
-  .stat > div{
-    min-width: 0;
+  /* Hero centered + no crop feeling */
+  .hero{ padding: 22px 0 6px; }
+  .hero-inner{
+    min-height: 520px;
+    border-radius: 24px;
+    max-width: var(--mobile-card);
+    margin-left: auto;
+    margin-right: auto;
   }
+  .hero-content{
+    padding: 18px;
+    max-width: 100%;
+  }
+  .hero h2{
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.05;
+  }
+  .hero p{ font-size: 14px; }
 
-  /* Stack the title + description */
-  .stat b{
-    display:block;
-    font-size: 14px;
-    line-height: 1.15;
-  }
-  .stat small{
-    display:block;
-    margin-top: 4px;
-    font-size: 12px;
-    line-height: 1.35;
-    opacity: .85;
-  }
-}
-/* ===== HERO STATS: force wrap + perfect fit on mobile ===== */
-@media (max-width: 920px){
+  .hero-actions{ gap: 10px; }
+  .hero-actions .btn{ width: 100%; }
 
-  /* make stats a clean 1-column stack */
+  /* Hero stats: always fit */
   .hero-stats{
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
   }
-
-  /* icon + text layout that always fits */
   .stat{
-    display: grid !important;
-    grid-template-columns: 46px 1fr !important;
-    align-items: start !important;
-    gap: 10px !important;
-    padding: 12px 12px !important;
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: start;
   }
+  .stat > div{ min-width: 0; }
+  .stat b, .stat small{
+    display:block;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .stat b{ font-size: 14px; line-height: 1.15; }
+  .stat small{ font-size: 12px; line-height: 1.35; opacity: .85; }
+  .stat .icon{ width: 46px; height: 46px; border-radius: 16px; }
 
-  /* make sure the text column can shrink and wrap */
-  .stat > div{
-    min-width: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 4px !important;
-  }
+  /* Services stack */
+  .services .svc{ grid-column: span 12; }
+  .svc{ grid-template-columns: 1fr; }
 
-  /* force line breaks and wrapping */
-  .stat b,
-  .stat small{
-    display: block !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-  }
-
-  .stat b{
-    font-size: 14px !important;
-    line-height: 1.15 !important;
-  }
-
-  .stat small{
-    font-size: 12px !important;
-    line-height: 1.35 !important;
-  }
-
-  /* keep icon size consistent */
-  .stat .icon{
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 16px !important;
-  }
-}/* ===== FINAL FIX: hero stat cards always fit on mobile ===== */
-@media (max-width: 920px){
-
-  /* stack the 3 cards nicely */
-  .hero-stats{
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  /* make each card a 2-column grid: icon | text */
-  .hero-stats .stat{
-    display: grid !important;
-    grid-template-columns: 48px 1fr !important;
-    grid-template-rows: auto auto !important;
-    align-items: start !important;
-    column-gap: 10px !important;
-    row-gap: 4px !important;
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  /* icon stays left and spans both rows */
-  .hero-stats .stat .icon{
-    grid-column: 1 !important;
-    grid-row: 1 / span 2 !important;
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 16px !important;
-  }
-
-  /* title on row 1, right side */
-  .hero-stats .stat b{
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    display: block !important;
-    min-width: 0 !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-    line-height: 1.15 !important;
-    font-size: 14px !important;
-  }
-
-  /* description on row 2, right side */
-  .hero-stats .stat small{
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    display: block !important;
-    min-width: 0 !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-    line-height: 1.35 !important;
-    font-size: 12px !important;
-    opacity: .85 !important;
-  }
-}
-/* ===== Mobile: show full service images (no crop) ===== */
-@media (max-width: 920px){
+  /* Service image: full visible (no crop) */
   .svc-media{
-    height: auto !important;
-    padding: 14px !important;          /* nice frame like your screenshot */
-    background: rgba(255,255,255,.55) !important;
+    min-height: unset;
+    margin: 0 14px 14px;
+    padding: 12px;
   }
-
   .svc-media img{
-    width: 100% !important;
-    height: auto !important;           /* let the image decide its height */
-    object-fit: contain !important;    /* FULL image, no crop */
-    border-radius: 18px !important;
-    transform: none !important;        /* stop zoom/crop */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: none;
   }
+  .svc:hover .svc-media img{ transform: none; }
 
-  /* Turn off hover zoom (mobile doesn't need it) */
-  .svc:hover .svc-media img{
-    transform: none !important;
-  }
-}/* ==========================
-   FINAL MOBILE OVERRIDES
-   (PASTE THIS AT VERY END)
-   ========================== */
+  /* Process */
+  .process .steps{ grid-column: span 12; }
+  .process .process-media{ grid-column: span 12; }
 
-@media (max-width: 920px){
+  /* Gallery */
+  .masonry{ columns: 1; }
 
-  /* Prevent horizontal overflow */
-  html, body { overflow-x: hidden; }
-  .container, .card, .svc, .svc-body, .svc-media { max-width: 100%; }
+  /* Estimate */
+  .estimate{ grid-template-columns: 1fr; }
+  .form-grid{ grid-template-columns: 1fr; }
+  .addons-row{ grid-template-columns: 1fr; }
+  select, input[type="number"], input[type="text"]{ font-size: 16px; }
 
-  /* ---------- HERO STAT BOXES: ALWAYS FIT ---------- */
-  .hero-stats{
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
+  /* Footer */
+  .footer-inner{ grid-template-columns: 1fr; }
 
-  .hero-stats .stat{
-    width: 100% !important;
-    min-width: 0 !important;
-    display: grid !important;
-    grid-template-columns: 48px 1fr !important;
-    grid-template-rows: auto auto !important;
-    column-gap: 10px !important;
-    row-gap: 4px !important;
-    align-items: start !important;
+  /* Drawer */
+  .panel{
+    right: 12px;
+    left: 12px;
+    width: auto;
+    top: 12px;
+    border-radius: 24px;
   }
-
-  .hero-stats .stat .icon{
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 16px !important;
-    grid-row: 1 / span 2 !important;
-  }
-
-  .hero-stats .stat b,
-  .hero-stats .stat small{
-    min-width: 0 !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-  }
-
-  /* ---------- SERVICES: FULL IMAGE ON MOBILE (NO CROP) ---------- */
-  .svc{
-    grid-template-columns: 1fr !important;
-  }
-
-  /* give the image a nice framed look */
-  .svc-media{
-    margin: 0 14px 14px !important;
-    padding: 12px !important;
-  }
-
-  /* IMPORTANT: contain + auto height so it never crops */
-  .svc-media img{
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    transform: none !important;
-  }
-
-  /* disable zoom on mobile */
-  .svc:hover .svc-media img{
-    transform: none !important;
-  }
-}/* ===== FIX: Hero stat boxes fit perfectly on mobile ===== */
-@media (max-width: 920px){
-  .hero-stats{
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  .hero-stats .stat{
-    width: 100% !important;
-    min-width: 0 !important;
-    display: grid !important;
-    grid-template-columns: 48px 1fr !important;
-    align-items: start !important;
-  }
-
-  .hero-stats .stat > div{ min-width: 0 !important; }
-
-  .hero-stats .stat b,
-  .hero-stats .stat small{
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-  }
-}
-/* === FINAL MOBILE CENTERING FIX (hero card) === */
-@media (max-width: 920px){
-  .hero-inner{
-    max-width: 560px;      /* iPhone-perfect width */
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-content{
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-/* === MOBILE: CENTER THE NAV PILL + MATCH HERO WIDTH === */
-@media (max-width: 920px){
-  .nav-wrap .container{
-    width: 100% !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-
-  .nav{
-    max-width: 560px !important;   /* match hero card */
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
-@media (max-width: 920px){
-  .hero-inner{
-    max-width: 560px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
+  .panel a{ padding: 16px; font-size: 15px; }
 }
 
-
-
-
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
