@@ -854,7 +854,32 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
   .svc:hover .svc-media img{
     transform: none !important;
   }
+}/* ===== FIX: Hero stat boxes fit perfectly on mobile ===== */
+@media (max-width: 920px){
+  .hero-stats{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .hero-stats .stat{
+    width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: 48px 1fr !important;
+    align-items: start !important;
+  }
+
+  .hero-stats .stat > div{ min-width: 0 !important; }
+
+  .hero-stats .stat b,
+  .hero-stats .stat small{
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
 }
+
 
 
 
