@@ -892,6 +892,20 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
     padding-right: 16px;
   }
 }
+/* === MOBILE: CENTER THE NAV PILL + MATCH HERO WIDTH === */
+@media (max-width: 920px){
+  .nav-wrap .container{
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .nav{
+    max-width: 560px !important;   /* match hero card */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 
 
 
