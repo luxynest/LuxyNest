@@ -575,3 +575,29 @@ select:focus,input:focus{
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
+/* === FINAL MOBILE HERO CONTENT CENTERING === */
+@media (max-width: 920px){
+
+  /* center the hero content block itself */
+  .hero-content{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* center pill */
+  .hero-content .pill{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* center buttons but keep full width */
+  .hero-actions{
+    justify-content: center;
+  }
+
+  /* center stats container (cards stay full width) */
+  .hero-stats{
+    justify-items: center;
+  }
+}
