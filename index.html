@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS file -->
-<link rel="stylesheet" href="style.css?v=10">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
       <div class="nav">
         <a class="brand" href="#top" aria-label="Go to top">
           <div class="logo" aria-hidden="true"></div>
-          <div>
+          <div class="brand-text">
             <h1>LuxyNest Cleaning</h1>
             <span>Luxury clean • Calm home • Premium care</span>
           </div>
@@ -73,68 +73,66 @@
   </div>
 
   <!-- HERO -->
-<header class="hero" id="top">
-  <div class="container">
-    <div class="hero-inner card">
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="hero-inner aura">
+        <div class="hero-media" aria-hidden="true">
+          <img src="images/hero.jpg" alt="Modern clean kitchen" loading="eager" fetchpriority="high" />
+        </div>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-      <div class="hero-media" aria-hidden="true">
-        <img src="images/hero.jpg" alt="Modern clean kitchen" loading="eager" fetchpriority="high" />
+        <div class="hero-content">
+          <div class="pill reveal">
+            <span class="dot" aria-hidden="true"></span>
+            Premium Cleaning • Trusted & Detail-Obsessed
+          </div>
+
+          <h2 class="reveal" style="transition-delay:.05s">
+            A spotless home — with a luxury touch.
+          </h2>
+
+          <p class="reveal" style="transition-delay:.10s">
+            We deliver elite residential and office cleaning with meticulous detail, calm professionalism,
+            and consistent results. Transparent add-ons, easy scheduling, and an instant estimate.
+          </p>
+
+          <div class="hero-actions reveal" style="transition-delay:.15s">
+            <a class="btn btn-primary" href="#estimate">Get Instant Estimate</a>
+            <a class="btn btn-ghost" href="#services">Explore Services</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat reveal" style="transition-delay:.20s">
+              <div class="icon" aria-hidden="true">✓</div>
+              <div>
+                <b>Premium Checklist</b>
+                <small>Every visit follows a standard of excellence</small>
+              </div>
+            </div>
+
+            <div class="stat reveal" style="transition-delay:.25s">
+              <div class="icon" aria-hidden="true">⏱</div>
+              <div>
+                <b>On-Time & Reliable</b>
+                <small>Clear arrival windows + updates</small>
+              </div>
+            </div>
+
+            <div class="stat reveal" style="transition-delay:.30s">
+              <div class="icon" aria-hidden="true">✦</div>
+              <div>
+                <b>Detail-First Finish</b>
+                <small>Edges, corners, glass & shine</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="hero-overlay" aria-hidden="true"></div>
-
-      <div class="hero-content">
-
-        <div class="pill reveal">
-          <span class="dot"></span>
-          Premium Cleaning • Trusted & Detail-Obsessed
-        </div>
-
-        <h2 class="reveal">
-          A spotless home — with a luxury touch.
-        </h2>
-
-        <p class="reveal">
-          We deliver elite residential and office cleaning with meticulous detail,
-          calm professionalism, and consistent results.
-          Transparent add-ons, easy scheduling, and an instant estimate.
-        </p>
-
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#estimate">Get Instant Estimate</a>
-          <a class="btn btn-ghost" href="#services">Explore Services</a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat reveal">
-            <div class="icon">✓</div>
-            <div>
-              <b>Premium Checklist</b>
-              <small>Every visit follows a standard of excellence</small>
-            </div>
-          </div>
-
-          <div class="stat reveal">
-            <div class="icon">⏱</div>
-            <div>
-              <b>On-Time & Reliable</b>
-              <small>Clear arrival windows + updates</small>
-            </div>
-          </div>
-
-          <div class="stat reveal">
-            <div class="icon">✦</div>
-            <div>
-              <b>Detail-First Finish</b>
-              <small>Edges, corners, glass & shine</small>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <p class="sr">Scroll down to view services, process, gallery, estimation, and contact.</p>
     </div>
-  </div>
-</header>
+  </header>
 
   <!-- SERVICES -->
   <section id="services">
@@ -184,7 +182,7 @@
             </ul>
           </div>
           <div class="svc-media">
-           <img src="images/kitchen.jpg" alt="Clean kitchen" loading="lazy">
+            <img src="images/kitchen.jpg" alt="Clean kitchen" loading="lazy">
           </div>
         </article>
 
@@ -229,100 +227,7 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3 class="reveal">A premium process, no guesswork</h3>
-          <p class="reveal" style="transition-delay:.06s">
-            Clear steps, consistent results. You always know what’s included and what to expect.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid process">
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step-num">1</div>
-            <div>
-              <b>Choose your service</b>
-              <span>Maintenance, deep clean, or move-in/out — then select add-ons if needed.</span>
-            </div>
-          </div>
-          <div class="step reveal" style="transition-delay:.06s">
-            <div class="step-num">2</div>
-            <div>
-              <b>Get an instant estimate</b>
-              <span>Use the Estimation section below for a price range and clear line items.</span>
-            </div>
-          </div>
-          <div class="step reveal" style="transition-delay:.12s">
-            <div class="step-num">3</div>
-            <div>
-              <b>We clean with elite detail</b>
-              <span>High-touch areas, floors, bathrooms, kitchens, and a final polish.</span>
-            </div>
-          </div>
-          <div class="step reveal" style="transition-delay:.18s">
-            <div class="step-num">4</div>
-            <div>
-              <b>Walk-through and finish</b>
-              <span>We verify key zones and leave your home calm, fresh, and photo-ready.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="process-media">
-          <div class="media-stack">
-            <div class="media-tile reveal lift">
-              <img src="images/tools.jpg" alt="Cleaning tools" loading="lazy">
-              <div class="label">House Care</div>
-            </div>
-            <div class="media-tile reveal lift" style="transition-delay:.08s">
-              <img src="images/office.jpg" alt="Office cleaning" loading="lazy">
-              <div class="label">Office Shine</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3 class="reveal">Industry visuals that match the vibe</h3>
-          <p class="reveal" style="transition-delay:.06s">
-
-          </p>
-        </div>
-      </div>
-
-      <div class="masonry">
-        <figure class="shot reveal">
-                        <img src="images/toolss.jpg" alt="Office cleaning" loading="lazy">
-
-          <figcaption class="cap">Premium tools <em>•</em> spotless results</figcaption>
-        </figure>
-        <figure class="shot reveal" style="transition-delay:.06s">
-                <img src="images/modernKitchen.jpg" alt="Office cleaning" loading="lazy">
-
-          <figcaption class="cap">Kitchens <em>•</em> fresh & polished</figcaption>
-        </figure>
-        <figure class="shot reveal" style="transition-delay:.12s">
-                    <img src="images/modernbathroom.jpg" alt="Office cleaning" loading="lazy">
-
-          <figcaption class="cap">Bathrooms <em>•</em> signature shine</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ESTIMATION (kept) -->
+  <!-- ESTIMATION -->
   <section id="estimate">
     <div class="container">
       <div class="section-head">
@@ -404,13 +309,12 @@
               <label for="notes">Notes (optional)</label>
               <input id="notes" type="text" placeholder="Example: focus on bathrooms + kitchen, no bedrooms" />
             </div>
-         
- </div>
-<div class="field" style="grid-column:1/-1;">
-              <label for="notes">Allergies (optional)</label>
-              <input id="notes" type="text" placeholder="Example: Dust, Airborn, Skin Ext.. " />
-            </div>
 
+            <div class="field" style="grid-column:1/-1;">
+              <label for="allergies">Allergies (optional)</label>
+              <input id="allergies" type="text" placeholder="Example: Dust, Airborne, Skin etc." />
+            </div>
+          </div>
         </div>
 
         <div class="card summary reveal lift" style="transition-delay:.06s">
@@ -447,7 +351,7 @@
           <div>
             <h4>Ready for an elite clean?</h4>
             <p>Add your phone, email, and service area here.</p>
-            <div class="copyright">© <span id="year"></span> Elite Cleaning Services</div>
+            <div class="copyright">© <span id="year"></span> LuxyNest Cleaning</div>
           </div>
 
           <div class="contact">
@@ -469,7 +373,7 @@
     </div>
   </footer>
 
-  <!-- JS file -->
+  <!-- JS -->
   <script src="app.js"></script>
 </body>
 </html>
