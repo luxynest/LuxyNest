@@ -630,4 +630,31 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
+/* ===== Fix HERO stat cards text on mobile ===== */
+@media (max-width: 920px){
+  .stat{
+    align-items: flex-start;   /* text aligns nicely */
+    gap: 10px;
+    padding: 12px 12px;
+  }
+
+  /* IMPORTANT: allow the text container to shrink/wrap */
+  .stat > div{
+    min-width: 0;
+  }
+
+  /* Stack the title + description */
+  .stat b{
+    display:block;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+  .stat small{
+    display:block;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.35;
+    opacity: .85;
+  }
+}
 
