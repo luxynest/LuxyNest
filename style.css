@@ -879,6 +879,19 @@ a, button, input, select { -webkit-tap-highlight-color: transparent; }
     word-break: break-word !important;
   }
 }
+/* === FINAL MOBILE CENTERING FIX (hero card) === */
+@media (max-width: 920px){
+  .hero-inner{
+    max-width: 560px;      /* iPhone-perfect width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-content{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
 
 
 
