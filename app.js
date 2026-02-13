@@ -1,197 +1,229 @@
-// Drawer menu
-const drawer = document.getElementById('drawer');
-const openDrawer = document.getElementById('openDrawer');
-const closeDrawer = document.getElementById('closeDrawer');
+/* app.js — LuxyNest Cleaning (clean + not funny)
+   - Mobile drawer (hamburger)
+   - Reveal on scroll
+   - Year in footer
+   - Instant estimate calculator (clean line items)
+*/
 
-function setDrawer(open){
-  drawer.classList.toggle('open', open);
-  drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
-}
-openDrawer?.addEventListener('click', () => setDrawer(true));
-closeDrawer?.addEventListener('click', () => setDrawer(false));
-drawer?.addEventListener('click', (e) => { if(e.target === drawer) setDrawer(false); });
+(() => {
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-// Reveal on scroll
-const revealEls = Array.from(document.querySelectorAll('.reveal'));
-const io = new IntersectionObserver((entries)=>{
-  for(const ent of entries){
-    if(ent.isIntersecting){
-      ent.target.classList.add('show');
-      io.unobserve(ent.target);
-    }
+  /* -----------------------------
+     Footer year
+  ------------------------------*/
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* -----------------------------
+     Drawer / Mobile menu
+  ------------------------------*/
+  const drawer = $("#drawer");
+  const openDrawerBtn = $("#openDrawer");
+  const closeDrawerBtn = $("#closeDrawer");
+
+  const openDrawer = () => {
+    if (!drawer) return;
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeDrawer = () => {
+    if (!drawer) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  if (openDrawerBtn) openDrawerBtn.addEventListener("click", openDrawer);
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeDrawer);
+
+  if (drawer) {
+    drawer.addEventListener("click", (e) => {
+      if (e.target === drawer) closeDrawer();
+    });
+    $$(".panel a", drawer).forEach((a) => a.addEventListener("click", closeDrawer));
   }
-}, { threshold: 0.12 });
-revealEls.forEach(el => io.observe(el));
 
-// Year
-const yearEl = document.getElementById('year');
-if(yearEl) yearEl.textContent = new Date().getFullYear();
-
-// ---------------------------------
-// Image fallback (prevents broken icons)
-// ---------------------------------
-function brandedFallbackSVG(label) {
-  const safe = (label || "Elite Cleaning").slice(0, 42);
-  const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
-    <defs>
-      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#BFDDE6" stop-opacity="0.85"/>
-        <stop offset="0.55" stop-color="#CDE8D3" stop-opacity="0.78"/>
-        <stop offset="1" stop-color="#F6CBDD" stop-opacity="0.65"/>
-      </linearGradient>
-      <radialGradient id="glow" cx="30%" cy="20%" r="70%">
-        <stop offset="0" stop-color="#FAE7A1" stop-opacity="0.55"/>
-        <stop offset="0.6" stop-color="#ADCCE6" stop-opacity="0.25"/>
-        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-      </radialGradient>
-      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="18"/>
-      </filter>
-    </defs>
-
-    <rect width="1400" height="1000" fill="url(#g1)"/>
-    <circle cx="360" cy="220" r="260" fill="url(#glow)" filter="url(#soft)"/>
-    <circle cx="1120" cy="260" r="260" fill="#ADCCE6" opacity="0.20" filter="url(#soft)"/>
-    <circle cx="820" cy="900" r="320" fill="#CDE8D3" opacity="0.28" filter="url(#soft)"/>
-
-    <g opacity="0.9">
-      <path d="M180 160l14 44 44 14-44 14-14 44-14-44-44-14 44-14z" fill="#FFFFFF" opacity="0.7"/>
-      <path d="M1230 170l10 32 32 10-32 10-10 32-10-32-32-10 32-10z" fill="#FFFFFF" opacity="0.65"/>
-      <path d="M1150 820l12 40 40 12-40 12-12 40-12-40-40-12 40-12z" fill="#FFFFFF" opacity="0.55"/>
-    </g>
-
-    <g>
-      <rect x="90" y="730" width="1220" height="170" rx="34" fill="rgba(255,255,255,0.70)"/>
-      <rect x="90" y="730" width="1220" height="170" rx="34" fill="none" stroke="rgba(22,35,28,0.14)" stroke-width="2"/>
-      <text x="140" y="820" font-family="Manrope, Arial" font-size="44" font-weight="800" fill="#0f1a14">${safe}</text>
-      <text x="140" y="872" font-family="Manrope, Arial" font-size="26" font-weight="700" fill="rgba(15,26,20,0.65)">
-        Premium clean • Calm home • Elite finish
-      </text>
-    </g>
-  </svg>`;
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-}
-
-function applyImageFallback(img) {
-  if (img.dataset.fallbackApplied === "1") return;
-  img.dataset.fallbackApplied = "1";
-  img.src = brandedFallbackSVG(img.alt || "Elite Cleaning");
-}
-
-function wireUpFallbacks() {
-  document.querySelectorAll("img").forEach((img) => {
-    img.addEventListener("error", () => applyImageFallback(img));
-    if (img.complete && img.naturalWidth === 0) applyImageFallback(img);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
   });
-}
-wireUpFallbacks();
 
-// ---------------------------------
-// ESTIMATION (kept)
-// ---------------------------------
-const $ = (id) => document.getElementById(id);
-
-const serviceType = $('serviceType');
-const homeType = $('homeType');
-const beds = $('beds');
-const baths = $('baths');
-const sqft = $('sqft');
-const frequency = $('frequency');
-const notes = $('notes');
-
-const priceRange = $('priceRange');
-const duration = $('duration');
-const lineItems = $('lineItems');
-
-const addonPrices = {
-  fridge: 35,
-  oven: 35,
-  windows: 45,
-  cabinets: 55,
-  laundry: 25,
-  pet: 20
-};
-
-const base = {
-  standard: { start: 120, perBath: 25, perBed: 18, perSqft: 0.06, hours: 2.0 },
-  deep:     { start: 170, perBath: 35, perBed: 25, perSqft: 0.09, hours: 3.0 },
-  move:     { start: 210, perBath: 40, perBed: 28, perSqft: 0.10, hours: 3.6 }
-};
-
-const homeMult = { apt: 1.00, house: 1.08 };
-const freqMult = { oneTime: 1.00, weekly: 0.82, biweekly: 0.88, monthly: 0.95 };
-
-function money(n){
-  return n.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
-}
-
-function calc(){
-  if(!serviceType || !homeType || !beds || !baths || !sqft || !frequency) return;
-
-  const t = serviceType.value;
-  const b = parseInt(beds.value, 10);
-  const ba = parseInt(baths.value, 10);
-  const s = Math.max(300, parseInt(sqft.value || "0", 10) || 0);
-
-  let subtotal =
-    base[t].start +
-    (b * base[t].perBed) +
-    (ba * base[t].perBath) +
-    (s * base[t].perSqft);
-
-  subtotal *= homeMult[homeType.value];
-  subtotal *= freqMult[frequency.value];
-
-  const addons = Array.from(document.querySelectorAll('.chip input[type="checkbox"]:checked'))
-    .map(cb => cb.value);
-
-  let addonTotal = addons.reduce((sum, k) => sum + (addonPrices[k] || 0), 0);
-
-  let hrs = base[t].hours + (b * 0.25) + (ba * 0.35) + Math.max(0, (s - 900) / 900) * 0.6;
-  if(t === 'move') hrs += 0.4;
-  if(addons.includes('cabinets')) hrs += 0.4;
-  if(addons.includes('windows')) hrs += 0.35;
-  if(addons.includes('oven')) hrs += 0.25;
-  if(addons.includes('fridge')) hrs += 0.25;
-  if(addons.includes('pet')) hrs += 0.2;
-
-  const low = Math.max(99, subtotal + addonTotal);
-  const high = low * 1.18;
-
-  if(priceRange) priceRange.textContent = `${money(low)} – ${money(high)}`;
-  if(duration) duration.textContent = `• ~${hrs.toFixed(1)}–${(hrs+0.8).toFixed(1)} hours`;
-
-  const items = [];
-  items.push({ name: "Service base", val: money(base[t].start) });
-  const bedLine = b > 0 ? `${b} bed` : "Studio";
-  items.push({ name: `Bedrooms (${bedLine})`, val: b > 0 ? money(b * base[t].perBed) : money(0) });
-  items.push({ name: `Bathrooms (${ba})`, val: money(ba * base[t].perBath) });
-  items.push({ name: `Sqft (${s})`, val: money(s * base[t].perSqft) });
-
-  const hm = homeMult[homeType.value];
-  if(hm !== 1) items.push({ name: "Home type factor", val: `× ${hm.toFixed(2)}` });
-
-  const fm = freqMult[frequency.value];
-  if(fm !== 1) items.push({ name: "Frequency factor", val: `× ${fm.toFixed(2)}` });
-
-  items.push({ name: "Add-ons", val: money(addonTotal) });
-
-  if(lineItems){
-    lineItems.innerHTML = items.map(i => `
-      <div class="li">
-        <span>${i.name}</span>
-        <em>${i.val}</em>
-      </div>
-    `).join('');
+  /* -----------------------------
+     Reveal on scroll
+  ------------------------------*/
+  const revealEls = $$(".reveal");
+  if (revealEls.length) {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((en) => en.isIntersecting && en.target.classList.add("show")),
+      { threshold: 0.12 }
+    );
+    revealEls.forEach((el) => io.observe(el));
   }
-}
 
-[serviceType, homeType, beds, baths, sqft, frequency, notes].forEach(el => {
-  el?.addEventListener('input', calc);
-  el?.addEventListener('change', calc);
-});
-document.querySelectorAll('.chip input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', calc);
-});
-calc();
+  /* -----------------------------
+     Estimate calculator
+  ------------------------------*/
+  const serviceType = $("#serviceType");
+  const homeType = $("#homeType");
+  const beds = $("#beds");
+  const baths = $("#baths");
+  const sqft = $("#sqft");
+  const frequency = $("#frequency");
+  const notes = $("#notes");
+  const allergies = $("#allergies");
+
+  const priceRangeEl = $("#priceRange");
+  const durationEl = $("#duration");
+  const lineItemsEl = $("#lineItems");
+
+  const addonChecks = $$(".addons-row input[type='checkbox']");
+
+  const PRICING = {
+    service: {
+      standard: { base: 110, perSqft: 0.11, bed: 18, bath: 28, min: 140, timeMult: 1.0 },
+      deep: { base: 150, perSqft: 0.14, bed: 22, bath: 38, min: 190, timeMult: 1.22 },
+      move: { base: 175, perSqft: 0.16, bed: 24, bath: 42, min: 220, timeMult: 1.32 },
+    },
+    homeTypeMultiplier: { apt: 1.0, house: 1.08 },
+    frequencyDiscount: { oneTime: 0, weekly: 0.15, biweekly: 0.10, monthly: 0.05 },
+    addons: { fridge: 35, oven: 35, windows: 45, cabinets: 55, laundry: 25, pet: 20 },
+  };
+
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+  const round = (n) => Math.round(n);
+
+  const money = (n) => {
+    const v = round(Math.abs(n));
+    const str = `$${v.toLocaleString()}`;
+    return n < 0 ? `–${str}` : str;
+  };
+
+  const escapeHtml = (str) =>
+    String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  // Get label text from the chip label, clean out the “+$xx” part
+  const cleanAddonLabel = (labelEl) => {
+    if (!labelEl) return "Add-on";
+    // label text includes checkbox + text + small
+    let t = labelEl.textContent || "";
+    t = t.replace(/\+\$\s*\d+/g, "").trim(); // remove +$35
+    t = t.replace(/\s+/g, " ");
+    return t;
+  };
+
+  function calcEstimate() {
+    if (!serviceType || !homeType || !beds || !baths || !sqft || !frequency) return;
+    if (!priceRangeEl || !durationEl || !lineItemsEl) return;
+
+    const svcKey = serviceType.value || "standard";
+    const svc = PRICING.service[svcKey] || PRICING.service.standard;
+
+    const bedCount = clamp(parseInt(beds.value, 10) || 0, 0, 10);
+    const bathCount = clamp(parseInt(baths.value, 10) || 1, 1, 10);
+    const sqftVal = clamp(parseInt(sqft.value, 10) || 900, 300, 12000);
+
+    const homeMult = PRICING.homeTypeMultiplier[homeType.value] ?? 1.0;
+    const disc = PRICING.frequencyDiscount[frequency.value] ?? 0;
+
+    // Add-ons
+    let addonsTotal = 0;
+    const addonLines = [];
+
+    addonChecks.forEach((cb) => {
+      if (!cb.checked) return;
+      const key = cb.value;
+      const cost = PRICING.addons[key] || 0;
+      addonsTotal += cost;
+
+      const label = cleanAddonLabel(cb.closest("label"));
+      addonLines.push({ label, cost });
+    });
+
+    // Core cost
+    const base = svc.base;
+    const sizeCost = sqftVal * svc.perSqft;
+    const roomCost = bedCount * svc.bed + bathCount * svc.bath;
+
+    let subtotal = (base + sizeCost + roomCost) * homeMult;
+    subtotal = Math.max(subtotal, svc.min);
+
+    const beforeDiscount = subtotal + addonsTotal;
+    const discountAmt = beforeDiscount * disc;
+    const total = beforeDiscount - discountAmt;
+
+    // Range (±8% feels less “random”)
+    const low = total * 0.94;
+    const high = total * 1.06;
+
+    priceRangeEl.textContent = `${money(low)} – ${money(high)}`;
+
+    // Time estimate
+    const addonMinutes = addonLines.length * 12;
+    const mins = (60 + (sqftVal / 100) * 5 + bathCount * 16 + bedCount * 9) * svc.timeMult + addonMinutes;
+    const hours = clamp(mins / 60, 1.5, 10);
+
+    const prettyHours =
+      hours < 2 ? `${hours.toFixed(1)} hours` : `${Math.round(hours)} hours`;
+    durationEl.textContent = `• ${prettyHours}`;
+
+    // Render line items (CLEAN)
+    const lines = [
+      { label: "Service base", cost: base },
+      { label: `Square footage (${sqftVal.toLocaleString()} sqft)`, cost: sizeCost },
+      { label: `Rooms (${bedCount} bed / ${bathCount} bath)`, cost: roomCost },
+      ...addonLines.map((a) => ({ label: a.label, cost: a.cost })),
+    ];
+
+    if (disc > 0) {
+      lines.push({ label: `Frequency discount (${Math.round(disc * 100)}%)`, cost: -discountAmt });
+    }
+
+    const itemsHtml = lines
+      .map(
+        (li) => `
+        <div class="li">
+          <span>${escapeHtml(li.label)}</span>
+          <em>${money(li.cost)}</em>
+        </div>
+      `
+      )
+      .join("");
+
+    // Notes / Allergies as full-width chips (NOT in the price column)
+    const noteText = (notes?.value || "").trim();
+    const allergyText = (allergies?.value || "").trim();
+
+    const metaChips = []
+    if (noteText) {
+      metaChips.push(`<div class="li" style="justify-content:flex-start; gap:10px;">
+        <span style="opacity:.75;">Notes:</span>
+        <span style="font-weight:800; opacity:.9;">${escapeHtml(noteText)}</span>
+      </div>`);
+    }
+    if (allergyText) {
+      metaChips.push(`<div class="li" style="justify-content:flex-start; gap:10px;">
+        <span style="opacity:.75;">Allergies:</span>
+        <span style="font-weight:800; opacity:.9;">${escapeHtml(allergyText)}</span>
+      </div>`);
+    }
+
+    lineItemsEl.innerHTML = itemsHtml + metaChips.join("");
+  }
+
+  [
+    serviceType, homeType, beds, baths, sqft, frequency, notes, allergies, ...addonChecks
+  ].forEach((el) => {
+    if (!el) return;
+    el.addEventListener("input", calcEstimate);
+    el.addEventListener("change", calcEstimate);
+  });
+
+  calcEstimate();
+})();
