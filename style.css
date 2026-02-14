@@ -893,3 +893,90 @@ html, body{
   .hero-content{ padding: 16px !important; }
   .hero-inner{ min-height: 420px !important; }
 }
+/* =========================================================
+   PHONE PORTRAIT FIX (most common view)
+   Paste at VERY END of style.css
+   ========================================================= */
+@media (max-width: 600px){
+
+  /* 1) NAV: prevent clipping + stack CTA nicely */
+  .nav{
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .brand{
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .cta{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto; /* 2 buttons + hamburger */
+    gap: 10px;
+    align-items: center;
+  }
+
+  .cta .btn{
+    width: 100%;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .hamburger{
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* 2) HERO: remove “fixed height” behavior that causes cut off */
+  .hero-inner{
+    min-height: unset !important;
+    height: auto !important;
+  }
+
+  .hero-content{
+    padding: 18px 16px 22px !important;
+    max-width: 100% !important;
+  }
+
+  /* 3) HERO BUTTONS: always visible, stack clean */
+  .hero-actions{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .hero-actions .btn{
+    width: 100% !important;
+  }
+
+  /* 4) HERO STATS: always fit, no overflow */
+  .hero-stats{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .stat{
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .stat b, .stat small{
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+}
+
+/* Optional: iPhone safe-area padding (helps notches) */
+@supports (padding: max(0px)){
+  .nav-wrap .container{
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}
