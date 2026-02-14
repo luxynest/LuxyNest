@@ -980,3 +980,34 @@ html, body{
     padding-right: max(12px, env(safe-area-inset-right));
   }
 }
+/* ============================
+   FIX: iPhone portrait overflow
+   (paste at VERY END of style.css)
+   ============================ */
+@media (max-width: 920px){
+
+  /* prevent any hidden horizontal overflow issues */
+  body { overflow-x: hidden; }
+
+  /* 1) HERO pill was forcing extra width (max-content) */
+  .pill{
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    flex-wrap: wrap !important;
+    line-height: 1.25;
+  }
+
+  /* 2) Safety: prevent long words/strings from pushing layout */
+  .hero-content,
+  .hero-content *{
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* 3) If any buttons ever cause overflow on very small phones */
+  .btn{
+    white-space: normal !important;
+  }
+}
