@@ -843,4 +843,53 @@ select:focus, input:focus{
     max-width: 100% !important;
   }
 }
+/* =========================================================
+   HARD FIX: stop iPhone landscape right-side clipping
+   Paste at VERY END of style.css
+   ========================================================= */
 
+/* kill any horizontal overflow anywhere */
+html, body{
+  max-width: 100%;
+  overflow-x: clip; /* better than hidden on iOS */
+}
+
+/* safety: images/blocks inside cards can overflow */
+.hero-inner, .nav, .card{
+  max-width: 100%;
+}
+
+/* iPhone landscape = tight width, force wrapping */
+@media (max-width: 920px) and (orientation: landscape){
+
+  /* make the hero content use full available width */
+  .hero-content{
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* pill is the #1 overflow culprit */
+  .pill{
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* buttons must never overflow */
+  .hero-actions{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+  .hero-actions .btn{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* reduce spacing so everything fits in landscape */
+  .hero{ padding: 14px 0 10px !important; }
+  .hero-content{ padding: 16px !important; }
+  .hero-inner{ min-height: 420px !important; }
+}
