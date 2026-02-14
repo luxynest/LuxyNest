@@ -805,3 +805,42 @@ select:focus, input:focus{
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }
 }
+/* =========================================================
+   iPhone / Mobile LANDSCAPE FIX (prevents right-side clipping)
+   Paste at VERY END of style.css
+   ========================================================= */
+@media (max-width: 920px) and (orientation: landscape){
+
+  /* Make sure the container accounts for iPhone safe areas */
+  .container{
+    width: min(var(--container),
+      calc(100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right))
+    );
+  }
+
+  /* Give nav/hero inner padding that respects safe-area */
+  .nav,
+  .hero-content{
+    padding-left:  calc(12px + env(safe-area-inset-left)) !important;
+    padding-right: calc(12px + env(safe-area-inset-right)) !important;
+  }
+
+  /* Reduce hero height/padding so content fits landscape */
+  .hero-inner{ min-height: 420px !important; }
+  .hero-content{ padding-top: 14px !important; padding-bottom: 14px !important; }
+
+  /* IMPORTANT: let the pill wrap instead of forcing max-content width */
+  .pill{
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Buttons should never overflow */
+  .hero-actions .btn{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
